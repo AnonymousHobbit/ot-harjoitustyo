@@ -1,0 +1,6 @@
+#Työtunnit
+
+| päivä | aika | mitä tein  |
+| :----:|:-----| :-----|
+| 20.11. | 2    | Projektin aloitus. pohjan ja rekisteröintiominaisuuden luominen |
+| 21.11. | 2    | Kirjautuminen ja testaamisen aloitus. Lisätty myös mahdollisuus testitietokannalle. "No commit message" johtuu vscodessa tapahtuneesta säädöstä. |

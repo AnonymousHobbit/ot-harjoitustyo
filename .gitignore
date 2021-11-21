@@ -2,10 +2,8 @@ __pycache__
 .pytest_cache
 .coverage
 htmlcov
-__pycache__
 .vscode
 .DS_store
-.env
 
 data.db
 test_data.db

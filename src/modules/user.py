@@ -50,3 +50,12 @@ class User:
             return msg
 
         return True
+    
+    def clear_table(self):
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            DELETE FROM users
+        """)
+
+        self.connection.commit()
+        return True

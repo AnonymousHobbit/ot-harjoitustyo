@@ -26,7 +26,7 @@ def main(testing=False):
         clear_db(connection)
         create_users(connection)
 
-    connection = get_connection(False)
+    connection = get_connection(True)
     print("\n[*] Initializing test database")
     clear_db(connection)
     create_users(connection)
