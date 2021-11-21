@@ -1,4 +1,10 @@
 __pycache__
 .pytest_cache
-/laskarit/viikko2/unicafe/.coverage
-/laskarit/viikko2/unicafe/htmlcov
+.coverage
+htmlcov
+__pycache__
+.vscode
+.DS_store
+.env
+
+data.db

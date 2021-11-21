@@ -1,12 +1,13 @@
 # ot-harjoitustyo
 
-## Laskarit
-### Viikko 1
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
+## Documentation
 
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-## Harjoitustyö
 [vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
 
-[kirjanpito](dokumentaatio/kirjanpito.md)
+[tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+
+## Todo
+ - [x] Database connection
+ - [x] Register
+ - [x] Login
+ - [ ] Testing for login and register
