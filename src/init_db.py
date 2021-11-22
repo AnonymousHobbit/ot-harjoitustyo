@@ -1,4 +1,5 @@
 from database import get_connection
+import os
 
 def clear_db(connection):
     cursor = connection.cursor()
@@ -20,6 +21,8 @@ def create_users(connection):
 
 
 def main(testing=False):
+    os.mkdir("src/databases") if not os.path.exists("src/databases/") else None
+    
     if not testing:
         connection = get_connection()
         print("\n[*] Initializing main database")
