@@ -36,11 +36,25 @@ $ poetry run invoke coverage-report
 ```
 
 ## ToDo
+### Viikko 3
  - [x] Tietokantayhteys
  - [x] Rekisteröinti
  - [x] Kirjautuminen
  - [x] Kirjautumisen testaus
- - [ ] Tehtävien luominen
+
+### Viikko 4
+ - [x] Tehtävien luominen
  - [ ] Tehtävien poistaminen
- - [ ] Tehtävien testaaminen
- - [ ] Organisaatio
+ - [ ] Toiminnoille testit
+
+### Viikko 5
+ - [ ] Luo sovellukselle UI
+
+### Viikko 6
+ - [ ] Luo uusi organisaatio
+ - [ ] Lisää organisaatioon uusi käyttäjä
+ - [ ] Testaa niiden toimivuus. 
+
+### Viikko 7
+ - [ ] Mahdollista koodin refaktorointa.
+ - [ ] Tarkista asioiden toimivuus
