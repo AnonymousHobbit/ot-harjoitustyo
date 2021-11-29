@@ -7,15 +7,23 @@ def main(user):
     task = Task()
     while True:
         print("\n[*] Select option")
-        selection = input("\n[1] Add Task\n[2] View Tasks\n[3] Logout\n")
+        selection = input(
+            "\n[1] Add Task\n[2] View Tasks\n[3] Delete task\n[4] Logout\n")
+
         if selection == "1":
             task_name = input("\nTask name: ")
             task_desc = input("\nTask description: ")
 
             if task.create_new(task_name, task_desc, user.get_id()):
                 print("[+] Task created")
+
         elif selection == "2":
-            print(task.get_by_name(user.get_id()))
+            tasks = task.get_by_userid(user.get_id())
+            for item in tasks:
+                print(f"[{item[0]}] {item[1:]}")
+
+        elif selection == "3":
+            task.delete(input("\nTask id: "))
 
         elif selection == "3":
             print("Logging out...")

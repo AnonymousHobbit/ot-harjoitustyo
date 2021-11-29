@@ -7,6 +7,7 @@ Tehtävien hallinnointisovellus. Sovelluksessa voi yksittäinen käyttäjä pit�
 [vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
 
 [tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+[arkkitehtuuri](dokumentaatio/arkkitehtuuri.md)
 
 ## Asentaminen
 Asenna tarvittavat kirjastot
@@ -49,6 +50,7 @@ $ poetry run invoke coverage-report
 
 ### Viikko 5
  - [ ] Luo sovellukselle UI
+ - [ ] Muuta sovellus arkkitehtuurin mukaisesti. Pientä muutosta luokkien rakenteisiin.
 
 ### Viikko 6
  - [ ] Luo uusi organisaatio

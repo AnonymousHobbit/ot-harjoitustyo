@@ -1,5 +1,6 @@
 from database import get_connection
 
+
 class Task:
     def __init__(self, test=False):
         self.connection = get_connection(test)
@@ -11,7 +12,7 @@ class Task:
         """)
         return cursor.fetchall()
 
-    def get_by_name(self, user_id):
+    def get_by_userid(self, user_id):
         cursor = self.connection.cursor()
         cursor.execute("""
             SELECT * FROM tasks
@@ -25,6 +26,15 @@ class Task:
             INSERT INTO tasks (title, description, status, user_id)
             VALUES (?, ?, ?, ?)
         """, (title, description, False, user_id))
+        self.connection.commit()
+        return True
+
+    def delete(self, task_id):
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            DELETE FROM tasks
+            WHERE id = ?
+        """, (task_id,))
         self.connection.commit()
         return True
 

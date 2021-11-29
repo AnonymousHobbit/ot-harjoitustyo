@@ -17,9 +17,9 @@ Käytännössä nämä ovat vain ryhmiä, joiden käyttäjät näkevät samoja t
 
 ## Toiminnallisuudet
  - Käyttäjä voi lisätä organisaation.
- - Käyttäjä voi kirjautua
- - Käyttäjä voi lisätä tehtäviä
- - Käyttäjä voi poistaa tehtäviä
+ - Käyttäjä voi kirjautua (Tehty)
+ - Käyttäjä voi lisätä tehtäviä (Tehty)
+ - Käyttäjä voi poistaa tehtäviä (Tehty)
  - Käyttäjä voi muokata tehtäviä
  - Käyttäjä voi lähteä organisaatiosta, jos ei ole luonut sitä. 
  - Organisaation pääkäyttäjä voi poistaa organisaation
