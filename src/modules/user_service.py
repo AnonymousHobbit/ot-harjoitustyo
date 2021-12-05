@@ -1,7 +1,7 @@
 from database import get_connection
 
 
-class User:
+class UserService:
     def __init__(self, test=False):
         self.connection = get_connection(test)
         self.username = ""

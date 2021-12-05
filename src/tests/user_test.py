@@ -1,5 +1,5 @@
 import unittest
-from modules.user_service import User
+from modules.user_service import UserService
 
 
 class UserTest(unittest.TestCase):
@@ -8,7 +8,7 @@ class UserTest(unittest.TestCase):
         self.testing_user_fail = {"username": "ez", "password": "ez"}
 
     def test_user_register_success(self):
-        user = User(True)
+        user = UserService(True)
         user.clear_table()  # Clear database before testing
 
         # Register a test user
@@ -19,7 +19,7 @@ class UserTest(unittest.TestCase):
                          1], self.testing_user["password"])
 
     def test_user_register_fail(self):
-        user = User(True)
+        user = UserService(True)
         user.clear_table()  # Clear database before testing
 
         # Register a test user
@@ -37,7 +37,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(registration, False)
 
     def test_user_login_success(self):
-        user = User(True)
+        user = UserService(True)
         user.clear_table()  # Clear database before testing
         user.register(self.testing_user["username"],
                       self.testing_user["password"])
@@ -46,7 +46,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(login, True)
 
     def test_user_login_fail(self):
-        user = User(True)
+        user = UserService(True)
         user.clear_table()  # Clear database before testing
 
         user.register(self.testing_user["username"],
@@ -63,7 +63,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(login, False)
 
     def test_get_users(self):
-        user = User(True)
+        user = UserService(True)
         user.clear_table()  # Clear database before testing
 
         # Register

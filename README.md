@@ -50,13 +50,18 @@ $ poetry run invoke coverage-report
  - [x] Toiminnoille testit
 
 ### Viikko 5
- - [ ] Luo sovellukselle UI
+ - [x] Luo sovellukselle UI
+ - [x] Kirjautumis- ja rekisteröitymis-ikkunat
+ - [x] Tehtävien näkeminen UI:ssa
+ - [x] Tehtävien luominen UI:ssa
+ - [ ] Tehtävien poistaminen ui:ssa
  - [ ] Muuta sovellus arkkitehtuurin mukaisesti. Pientä muutosta luokkien rakenteisiin.
 
 ### Viikko 6
  - [ ] Luo uusi organisaatio
  - [ ] Lisää organisaatioon uusi käyttäjä
  - [ ] Testaa niiden toimivuus. 
+ - [ ] UI:hin virheilmoitukset
 
 ### Viikko 7
  - [ ] Mahdollista koodin refaktorointa.

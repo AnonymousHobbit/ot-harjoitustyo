@@ -1,7 +1,7 @@
 from database import get_connection
 
 
-class Task:
+class TaskService:
     def __init__(self, test=False):
         self.connection = get_connection(test)
 
@@ -20,12 +20,12 @@ class Task:
         """, (user_id,))
         return cursor.fetchall()
 
-    def create_new(self, title, description, user_id):
+    def create_new(self, title, user_id):
         cursor = self.connection.cursor()
         cursor.execute("""
-            INSERT INTO tasks (title, description, status, user_id)
-            VALUES (?, ?, ?, ?)
-        """, (title, description, False, user_id))
+            INSERT INTO tasks (title, status, user_id)
+            VALUES (?, ?, ?)
+        """, (title, False, user_id))
         self.connection.commit()
         return True
 
