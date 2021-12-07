@@ -2,6 +2,9 @@
 
 Tehtävien hallinnointisovellus. Sovelluksessa voi yksittäinen käyttäjä pitää kirjaa omista tehtävistään. Käyttäjä voi myös kuulua organisaatioon, jossa näkyvät kaikki yleiset tehtävät jokaiselle organisaation jäsenelle. 
 
+## Releases
+[1.0.0](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Dokumentaatio
 
 [vaatimusmäärittely](dokumentaatio/vaatimusmäärittely.md)
