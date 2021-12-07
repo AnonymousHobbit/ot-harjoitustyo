@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 
+
 class LoginView:
     def __init__(self, root, user_service, to_task_view):
         self._root = root
@@ -27,9 +28,9 @@ class LoginView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         main_text = ttk.Label(master=self._frame,
-            text="Login to your account",
-            font=("Helvetica", 16)
-        )
+                              text="Login to your account",
+                              font=("Helvetica", 16)
+                              )
 
         # Set the size of the window at the start
         self._root.geometry("600x400")
