@@ -1,13 +1,14 @@
 import os
 from database import get_connection
 
-
 def clear_db(connection):
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS tasks")
     cursor.execute("DROP TABLE IF EXISTS users")
+    cursor.execute("DROP TABLE IF EXISTS organisation_tasks")
+    cursor.execute("DROP TABLE IF EXISTS organisations")
     connection.commit()
-    print("[+] Table 'users', 'tasks' dropped")
+    print("[+] Table 'users', 'tasks', 'organisations', 'organisation_tasks' dropped")
 
 
 def create_users(connection):
@@ -16,7 +17,9 @@ def create_users(connection):
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            org_name INTEGER,
+            FOREIGN KEY(org_name) REFERENCES organisation(name)
         )
     """)
     connection.commit()
@@ -38,6 +41,39 @@ def create_task(connection):
     print("[+] Table 'tasks' created")
 
 
+def create_org(connection):
+    cursor = connection.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS organisations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            join_key TEXT NOT NULL
+        )
+    """)
+    connection.commit()
+    print("[+] Table 'organisations' created")
+
+def create_org_tasks(connection):
+    cursor = connection.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS organisation_tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            status TEXT NOT NULL,
+            organisation_id INTEGER NOT NULL,
+            FOREIGN KEY(organisation_id) REFERENCES organisation(id)
+        )
+    """)
+    connection.commit()
+    print("[+] Table 'organisation_tasks' created")
+
+def creation(connection):
+    clear_db(connection)
+    create_users(connection)
+    create_task(connection)
+    create_org(connection)
+    create_org_tasks(connection)
+
 def main(testing=False):
     if not os.path.exists("src/databases/"):
         os.mkdir("src/databases")
@@ -45,15 +81,11 @@ def main(testing=False):
     if not testing:
         connection = get_connection()
         print("\n[*] Initializing main database")
-        clear_db(connection)
-        create_users(connection)
-        create_task(connection)
+        creation(connection)
 
     connection = get_connection(True)
     print("\n[*] Initializing test database")
-    clear_db(connection)
-    create_users(connection)
-    create_task(connection)
+    creation(connection)
 
     print("\n[*] Finished initializing databases")
 

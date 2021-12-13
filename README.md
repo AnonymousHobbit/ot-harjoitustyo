@@ -29,6 +29,7 @@ Käynnistä sovellus
 $ poetry run invoke start
 ```
 
+
 ## Testaaminen
 Jos haluat suorittaa testit
 ```
@@ -38,6 +39,11 @@ $ poetry run invoke test
 Luo testausraportti
 ```
 $ poetry run invoke coverage-report
+```
+
+Suorita pylint
+```
+$ poetry run invoke lint
 ```
 
 ## ToDo
@@ -57,15 +63,18 @@ $ poetry run invoke coverage-report
  - [x] Kirjautumis- ja rekisteröitymis-ikkunat
  - [x] Tehtävien näkeminen UI:ssa
  - [x] Tehtävien luominen UI:ssa
- - [ ] Tehtävien poistaminen ui:ssa
+ - [x] Tehtävien poistaminen ui:ssa
  - [ ] Muuta sovellus arkkitehtuurin mukaisesti. Pientä muutosta luokkien rakenteisiin.
 
 ### Viikko 6
  - [ ] Luo uusi organisaatio
- - [ ] Lisää organisaatioon uusi käyttäjä
+ - [ ] Listaa organisaatiot
  - [ ] Testaa niiden toimivuus. 
- - [ ] UI:hin virheilmoitukset
+ 
 
-### Viikko 7
+### Viikko 7-8
+ - [ ] Liity uuteen organisaatioon
+ - [ ] Lisää organisaatioon tehtäviä
  - [ ] Mahdollista koodin refaktorointa.
  - [ ] Tarkista asioiden toimivuus
+ - [ ] UI:hin virheilmoitukset

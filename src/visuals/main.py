@@ -2,14 +2,17 @@ from visuals.login_view import LoginView
 from visuals.task_view import TaskView
 from visuals.register_view import RegisterView
 from visuals.start_view import StartView
-from modules.user_service import UserService
+from modules.user_service import user_service
+from visuals.org_view import OrgView
+from visuals.org_create_view import OrgCreateView
+from visuals.dashboard_view import DashboardView
 
 
 class UI:
     def __init__(self, root):
         self._root = root
         self._current_view = None
-        self.user_service = UserService()
+        self.user_service = user_service
 
     def start(self):
         self._current_view = StartView(
@@ -29,8 +32,7 @@ class UI:
         self._hide_current_view()
         self._current_view = LoginView(
             self._root,
-            user_service=self.user_service,
-            to_task_view=self._show_tasks_view
+            to_dashboard_view=self._show_dashboard_view
         )
         self._current_view.pack()
 
@@ -39,7 +41,7 @@ class UI:
         self._hide_current_view()
         self._current_view = TaskView(
             self._root,
-            user_service=self.user_service
+            to_org_view=self._show_organisation_view
         )
         self._current_view.pack()
 
@@ -47,7 +49,31 @@ class UI:
         self._hide_current_view()
         self._current_view = RegisterView(
             self._root,
-            user_service=self.user_service,
-            to_task_view=self._show_tasks_view
+            to_dashboard_view=self._show_dashboard_view
+        )
+        self._current_view.pack()
+
+    def _show_organisation_view(self):
+        self._hide_current_view()
+        self._current_view = OrgView(
+            self._root
+        )
+        self._current_view.pack()
+
+    def _show_dashboard_view(self):
+        self._hide_current_view()
+        self._current_view = DashboardView(
+            self._root,
+            to_task_view=self._show_tasks_view,
+            to_org_view=self._show_organisation_view,
+            to_org_create_view=self._show_create_org_view
+        )
+        self._current_view.pack()
+
+    def _show_create_org_view(self):
+        self._hide_current_view()
+        self._current_view = OrgCreateView(
+            self._root,
+            to_org_view=self._show_organisation_view,
         )
         self._current_view.pack()

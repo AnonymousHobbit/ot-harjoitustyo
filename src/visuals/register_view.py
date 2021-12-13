@@ -1,13 +1,13 @@
 from tkinter import ttk, constants
-
+from modules.user_service import user_service
 
 class RegisterView:
-    def __init__(self, root, user_service, to_task_view):
+    def __init__(self, root, to_dashboard_view):
         self._root = root
         self._frame = None
         self._username = None
         self._password = None
-        self._to_task_view = to_task_view
+        self._to_dashboard_view = to_dashboard_view
         self.user_service = user_service
         self._initialize()
 
@@ -15,7 +15,7 @@ class RegisterView:
         username = self._username.get()
         password = self._password.get()
         if self.user_service.register(username, password):
-            self._to_task_view()
+            self._to_dashboard_view()
         else:
             print("Failed to create a new account")
 
