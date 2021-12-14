@@ -1,16 +1,13 @@
 from tkinter import Tk
-from visuals.main import UI
-
-
-def main_menu():
-    window = Tk()
-    window.title("Task manager V2.0")
-
-    user_interface = UI(window)
-    user_interface.start()
-
-    window.mainloop()
+from visuals.control import UI
 
 
 if __name__ == '__main__':
-    main_menu()
+    window = Tk()
+    window.title("Task manager V2.0")
+
+    #Start the app
+    ui = UI(window)
+    ui.start()
+
+    window.mainloop()

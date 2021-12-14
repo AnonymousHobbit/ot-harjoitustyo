@@ -1,10 +1,9 @@
-from tkinter import ttk, constants
+from tkinter import Frame, ttk, constants
 
 class OrgView:
-    def __init__(self, root):
-        self._root = root
+    def __init__(self, master, control):
+        self._root = master
         self._frame = None
-
         self._initialize()
 
     def pack(self):

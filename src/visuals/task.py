@@ -1,31 +1,33 @@
 from tkinter import ttk, constants
 from modules.task_service import task_service
 from modules.user_service import user_service
-from visuals.single_task_view import SingleTaskView
+from visuals.single_task import SingleTaskView
 
 class TaskView:
-    def __init__(self, root, to_org_view):
-        self._root = root
+    def __init__(self, master, control):
+        self._root = master
         self._frame = None
-        self._task_service = task_service
-        self._user_service = user_service
-        self._to_org_view = to_org_view
+        self.control = control
         self._single_task = None
         self._task = None
-
+        self.task_list = None
         self._initialize()
 
     def destroy(self):
         self._root.destroy()
 
     def pack(self):
-        self._frame.pack(fill=constants.X)
+        self._frame.pack()
 
     # Handle new task
     def _add_task(self):
         task = self._task.get()
-        user_id = self._user_service.get_id()
-        self._task_service.create_new(task, user_id)
+        user_id = user_service.get_id()
+        task_service.create_new(task, user_id)
+        self._get_task_list()
+
+    def _remove_task(self, task_id):
+        task_service.delete(task_id)
         self._get_task_list()
 
     # Input field for creating new task
@@ -51,14 +53,14 @@ class TaskView:
         )
 
     def _get_task_list(self):
-        user_id = self._user_service.get_id()
-        task_list = self._task_service.get_by_userid(user_id)
+        user_id = user_service.get_id()
+        self.task_list = task_service.get_by_userid(user_id)
 
         if self._single_task:
             self._single_task.destroy()
         
         #Single task in the ui
-        self._single_task = SingleTaskView(self._root, task_list, self._get_task_list)
+        self._single_task = SingleTaskView(self._root, self)
         self._single_task.pack()
 
     def _initialize(self):

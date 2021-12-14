@@ -1,12 +1,14 @@
 from tkinter import ttk, constants
 from modules.org_service import OrgService
 from modules.user_service import user_service
+from visuals.organisation import OrgView
+
 
 class OrgCreateView:
-    def __init__(self, root, to_org_view):
-        self._root = root
+    def __init__(self, master, control):
+        self._root = master
         self._frame = None
-        self._to_org_view = to_org_view
+        self.control = control
         self._org_service = OrgService()
         self._user_service = user_service
         self._org_name = None
@@ -23,7 +25,7 @@ class OrgCreateView:
         org_name = self._org_name.get()
         org_key = self._org_key.get()
         self._org_service.create_new(org_name, org_key, self._user_service)
-        self._to_org_view()
+        self.control.switch_frame(OrgView)
 
     def _create_new_org(self):
 
