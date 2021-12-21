@@ -6,7 +6,7 @@ from modules.user_service import UserService
 class TaskTest(unittest.TestCase):
     def setUp(self):
         self.task = {"title": "tester", "status": False}
-        self.task2 = {"title": "tester", "status": False}
+        self.task2 = {"title": "tester2", "status": False}
 
         # Create a test user nro. 1
         self.user = UserService()
