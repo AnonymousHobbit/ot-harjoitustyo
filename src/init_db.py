@@ -1,6 +1,7 @@
 import os
 from database import get_connection
 
+
 def clear_db(connection):
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS tasks")
@@ -18,7 +19,7 @@ def create_users(connection):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             password TEXT NOT NULL,
-            org_name INTEGER,
+            org_name TEXT,
             FOREIGN KEY(org_name) REFERENCES organisation(name)
         )
     """)
@@ -53,6 +54,7 @@ def create_org(connection):
     connection.commit()
     print("[+] Table 'organisations' created")
 
+
 def create_org_tasks(connection):
     cursor = connection.cursor()
     cursor.execute("""
@@ -60,12 +62,13 @@ def create_org_tasks(connection):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             status TEXT NOT NULL,
-            organisation_id INTEGER NOT NULL,
-            FOREIGN KEY(organisation_id) REFERENCES organisation(id)
+            organisation_name TEXT NOT NULL,
+            FOREIGN KEY(organisation_name) REFERENCES organisation(name)
         )
     """)
     connection.commit()
     print("[+] Table 'organisation_tasks' created")
+
 
 def creation(connection):
     clear_db(connection)
@@ -73,6 +76,7 @@ def creation(connection):
     create_task(connection)
     create_org(connection)
     create_org_tasks(connection)
+
 
 def main(testing=False):
     if not os.path.exists("src/databases/"):

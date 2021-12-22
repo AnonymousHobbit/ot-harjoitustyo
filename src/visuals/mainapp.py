@@ -1,6 +1,5 @@
-from tkinter import ttk
-from modules.user_service import user_service
-from visuals.dashboard import DashboardView
+from tkinter import ttk, messagebox
+from modules.user_service import user_service, IncorrectCredentialsError, UsernameExistsError
 
 
 class StartView:
@@ -17,38 +16,39 @@ class StartView:
 
     def pack(self):
         self._frame.pack()
-    
+
     # Handle creating new account
     def _handle_register(self):
         username = self._username.get()
         password = self._password.get()
-        if user_service.register(username, password):
-            self.control.switch_frame(DashboardView)
-        else:
-            print("Failed to create a new account")
+        try:
+            user_service.register(username, password)
+            self.control.switch_frame("DashboardView")
+        except UsernameExistsError:
+            messagebox.showerror("Error", "Username already exists")
 
     # Handle login to already existing account
     def _handle_login(self):
         username = self._username.get()
         password = self._password.get()
-        if user_service.login(username, password):
-            self.control.switch_frame(DashboardView)
-        else:
-            print("Login failed")
+        try:
+            user_service.login(username, password)
+            self.control.switch_frame("DashboardView")
+        except IncorrectCredentialsError:
+            messagebox.showerror("Error", "Incorrect username or password")
 
     def _initialize(self):
-        #Main windows configuration
+        # Main windows configuration
         self._frame = ttk.Frame(master=self._root)
         self._root.geometry("600x400")
 
-        #Label
+        # Label
         main_text = ttk.Label(master=self._frame,
                               text="Login or create a new account",
                               font=("Helvetica", 16)
                               )
         main_text.grid(row=0, column=0, padx=5,
                        pady=25, columnspan=2)
-       
 
         # Username section
         username_label = ttk.Label(master=self._frame, text="Username")

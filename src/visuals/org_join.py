@@ -1,9 +1,9 @@
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from modules.org_service import OrgService
 from modules.user_service import user_service
 
 
-class OrgCreateView:
+class OrgJoinView:
     def __init__(self, master, control):
         self._root = master
         self._frame = None
@@ -11,7 +11,7 @@ class OrgCreateView:
         self._org_service = OrgService()
         self._org_name = None
         self._org_key = None
-
+        self.error = None
         self._initialize()
 
     def pack(self):
@@ -23,7 +23,7 @@ class OrgCreateView:
     def _handle_create(self):
         org_name = self._org_name.get()
         org_key = self._org_key.get()
-        if self._org_service.create_new(org_name, org_key, user_service):
+        if user_service.join_org(org_name, org_key):
             self.control.switch_frame("OrgView")
 
     def _create_new_org(self):
@@ -44,14 +44,9 @@ class OrgCreateView:
 
         # Create button
         create_button = ttk.Button(
-            master=self._frame, text="Create", command=self._handle_create)
+            master=self._frame, text="Join", command=self._handle_create)
         create_button.grid(row=5, column=0, columnspan=2,
                            padx=5, pady=5, ipadx=60)
-
-        back_button = ttk.Button(
-            master=self._frame, text="Create", command=self._handle_create)
-        back_button.grid(row=5, column=0, columnspan=2,
-                         padx=5, pady=5, ipadx=60)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

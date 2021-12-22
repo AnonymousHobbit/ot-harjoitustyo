@@ -6,7 +6,7 @@ if __name__ == '__main__':
     window = Tk()
     window.title("Task manager V2.0")
 
-    #Start the app
+    # Start the app
     ui = UI(window)
     ui.start()
 

@@ -79,4 +79,5 @@ class TaskService:
         self.connection.commit()
         return True
 
+
 task_service = TaskService()

@@ -1,5 +1,23 @@
 from database import get_connection
 from modules.org_service import OrgService
+from models.user import User
+
+
+class UsernameExistsError(Exception):
+    pass
+
+
+class ShortCredentialsError(Exception):
+    pass
+
+
+class IncorrectCredentialsError(Exception):
+    pass
+
+
+class InvalidJoinKey(Exception):
+    pass
+
 
 class UserService:
     """Class used to handle user activities
@@ -10,6 +28,7 @@ class UserService:
             username: username of user
             password: password of user
     """
+
     def __init__(self, test=False):
         """Class used to handle user activities
 
@@ -19,9 +38,8 @@ class UserService:
         """
 
         self.connection = get_connection(test)
-        self.org_service = OrgService()
-        self.username = ""
-        self.password = ""
+        self.org_service = OrgService(test)
+        self.user = None
 
     def get_users(self):
         """Get all users"""
@@ -48,7 +66,7 @@ class UserService:
 
     def register(self, username, password):
         """Find user by username from database
-        
+
         Returns false if username already exists
         Returns false if username or password is less than 3 characters
 
@@ -58,12 +76,11 @@ class UserService:
         """
 
         if len(username) < 3 or len(password) < 3:
-            print("Username or password is too short (min 3)")
-            return False
+            raise ShortCredentialsError(
+                "Username or password must be at least 3 characters")
 
         if self.find(username) is not None:
-            print("Username already exists")
-            return False
+            raise UsernameExistsError("Username already exists")
 
         cursor = self.connection.cursor()
         cursor.execute("""
@@ -71,14 +88,13 @@ class UserService:
             VALUES (?, ?)
         """, (username, password))
 
-        self.username = username
-        self.password = password
+        self.user = User(username, password)
         self.connection.commit()
         return True
 
     def login(self, username, password):
         """Sets username and password if login is successful
-        
+
         Returns false if username or password is incorrect
 
         Args:
@@ -88,15 +104,12 @@ class UserService:
 
         user = self.find(username)
         if user is None:
-            print("Username or password is incorrect")
-            return False
+            raise IncorrectCredentialsError("Incorrect username or password")
 
         if user[2] != password:
-            print("Username or password is incorrect")
-            return False
+            raise IncorrectCredentialsError("Incorrect username or password")
 
-        self.username = username
-        self.password = password
+        self.user = User(username, password)
         return True
 
     def get_id(self):
@@ -104,17 +117,17 @@ class UserService:
         cursor = self.connection.cursor()
         cursor.execute("""
             SELECT id FROM users WHERE username = ?
-        """, (self.username,))
+        """, (self.user.username,))
 
         return cursor.fetchone()[0]
 
     def get_name(self):
         """Returns name of user"""
-        return self.username
+        return self.user.username
 
     def join_org(self, name, key):
         """Join a new organisation
-        
+
         Return false if join key is incorrect
 
         Args:
@@ -122,23 +135,33 @@ class UserService:
             key: join key of organisation
         """
         if not self.org_service.check_join_key(name, key):
-            print("Invalid join key")
-            return False
+            raise InvalidJoinKey("Invalid join key")
+
         cursor = self.connection.cursor()
         cursor.execute("""
             UPDATE users SET org_name = ? WHERE username = ?
-        """, (name, self.username))
+        """, (name, self.user.username))
 
         self.connection.commit()
         return True
-        
+
+    def leave_org(self):
+        """Leave organisation"""
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            UPDATE users SET org_name = NULL WHERE username = ?
+        """, (self.user.username,))
+
+        self.connection.commit()
+        return True
+
     def get_org_name(self):
         """Return name of the organisation"""
 
         cursor = self.connection.cursor()
         cursor.execute("""
             SELECT org_name FROM users WHERE username = ?
-        """, (self.username,))
+        """, (self.user.username,))
 
         return cursor.fetchone()[0]
 
@@ -148,8 +171,9 @@ class UserService:
         cursor.execute("""
             DELETE FROM users
         """)
-
+        self.user = None
         self.connection.commit()
         return True
+
 
 user_service = UserService()
