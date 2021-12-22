@@ -3,6 +3,11 @@ from database import get_connection
 
 
 def clear_db(connection):
+    """Delete all tables from the databases with connection
+    
+    Args:
+        connection: connection to the database
+    """
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS tasks")
     cursor.execute("DROP TABLE IF EXISTS users")
@@ -13,6 +18,11 @@ def clear_db(connection):
 
 
 def create_users(connection):
+    """Create users table
+    
+    Args:
+        connection: connection to the database
+    """
     cursor = connection.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
@@ -28,6 +38,11 @@ def create_users(connection):
 
 
 def create_task(connection):
+    """Create tasks table
+    
+    Args:
+        connection: connection to the database      
+    """
     cursor = connection.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS tasks (
@@ -43,6 +58,11 @@ def create_task(connection):
 
 
 def create_org(connection):
+    """Create organisation table
+    
+    Args:
+        connection: connection to the database
+    """
     cursor = connection.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS organisations (
@@ -56,6 +76,11 @@ def create_org(connection):
 
 
 def create_org_tasks(connection):
+    """Create organisation_tasks table
+    
+    Args:
+        connection: connection to the database
+    """
     cursor = connection.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS organisation_tasks (
@@ -71,6 +96,11 @@ def create_org_tasks(connection):
 
 
 def creation(connection):
+    """Create all tables in the database
+    
+    Args:
+        connection: connection to the database
+    """
     clear_db(connection)
     create_users(connection)
     create_task(connection)
@@ -79,6 +109,12 @@ def creation(connection):
 
 
 def main(testing=False):
+    """Main function
+    
+    Args:
+        testing: boolean used to determine if test database should be used
+    """
+
     if not os.path.exists("src/databases/"):
         os.mkdir("src/databases")
 

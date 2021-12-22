@@ -3,16 +3,31 @@ from modules.user_service import user_service
 
 
 class DashboardView:
+    """Class of Dashboard view
+    
+    Attributes:
+        _root: root window
+        _frame: frame of dashboard view
+
+    """
     def __init__(self, master, control):
+        """Constructor that initializes the window
+        
+        Args:
+            master: root window
+            control: control.py class instance
+        """
         self._root = master
         self._frame = None
         self.control = control
         self._initialize()
 
     def destroy(self):
+        """Destroy the window"""
         self._frame.destroy()
 
     def pack(self):
+        """Pack the window"""
         self._frame.pack()
 
     def _initialize(self):

@@ -2,17 +2,33 @@ from tkinter import ttk, constants
 
 
 class SingleTaskView:
+    """Class of single task view that displays the list of tasks
+
+    Attributes:
+        _root: root of the window
+        parent: parent class instance
+        _frame: frame of the window
+    """
     def __init__(self, master, parent):
+        """Constructor that initalizes the window
+        
+        Args:
+            master: root of the window
+            parent: parent class instance
+        """
         self._root = master
         self.parent = parent
         self._frame = None
         self._initialize()
 
+    def destroy(self):
+        """Destroy the window"""
+        self._frame.destroy()
+
     def pack(self):
+        """Pack the window"""
         self._frame.pack(fill=constants.X)
 
-    def destroy(self):
-        self._frame.destroy()
 
     def _task_frame(self, item):
         task_frame = ttk.Frame(master=self._frame)

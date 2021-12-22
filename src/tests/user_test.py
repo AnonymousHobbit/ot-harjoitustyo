@@ -1,5 +1,5 @@
 import unittest
-from modules.user_service import UserService, UsernameExistsError, ShortCredentialsError, IncorrectCredentialsError, InvalidJoinKey
+from modules.user_service import UserService, UsernameExistsError, ShortCredentialsError, IncorrectCredentialsError, InvalidJoinKeyError
 from modules.org_service import OrgService
 from models.user import User
 
@@ -96,7 +96,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(org_name, "test_org")
 
         # Error if key is invalid
-        with self.assertRaises(InvalidJoinKey):
+        with self.assertRaises(InvalidJoinKeyError):
             self.user_service.join_org("test_org", "test_key_invalid")
 
     def test_user_leave_org(self):

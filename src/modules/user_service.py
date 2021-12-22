@@ -15,7 +15,7 @@ class IncorrectCredentialsError(Exception):
     pass
 
 
-class InvalidJoinKey(Exception):
+class InvalidJoinKeyError(Exception):
     pass
 
 
@@ -135,7 +135,7 @@ class UserService:
             key: join key of organisation
         """
         if not self.org_service.check_join_key(name, key):
-            raise InvalidJoinKey("Invalid join key")
+            raise InvalidJoinKeyError("Invalid join key")
 
         cursor = self.connection.cursor()
         cursor.execute("""

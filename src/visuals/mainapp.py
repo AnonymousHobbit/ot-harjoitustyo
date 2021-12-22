@@ -1,9 +1,25 @@
 from tkinter import ttk, messagebox
-from modules.user_service import user_service, IncorrectCredentialsError, UsernameExistsError
+from modules.org_service import ShortNameError
+from modules.user_service import user_service, IncorrectCredentialsError, UsernameExistsError, ShortCredentialsError
 
 
 class StartView:
+    """Class of login/register view
+    
+        Attributes:
+            _root: root window
+            _frame: frame of login/register view
+            username: username of user
+            password: password of user
+            
+    """
     def __init__(self, master, control):
+        """Constructor that initializes the window
+        
+        Args:
+            master: root window
+            control: control.py class instance
+        """
         self._root = master
         self._frame = None
         self.username = None
@@ -12,9 +28,11 @@ class StartView:
         self._initialize()
 
     def destroy(self):
+        """Destroy the window"""
         self._frame.destroy()
 
     def pack(self):
+        """Pack the window"""
         self._frame.pack()
 
     # Handle creating new account
@@ -26,6 +44,8 @@ class StartView:
             self.control.switch_frame("DashboardView")
         except UsernameExistsError:
             messagebox.showerror("Error", "Username already exists")
+        except ShortCredentialsError:
+            messagebox.showerror("Error", "Username or password must be at least 3 characters")
 
     # Handle login to already existing account
     def _handle_login(self):

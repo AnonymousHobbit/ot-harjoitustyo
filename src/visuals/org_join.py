@@ -1,30 +1,53 @@
 from tkinter import ttk, messagebox
 from modules.org_service import OrgService
-from modules.user_service import user_service
+from modules.user_service import InvalidJoinKeyError, user_service, InvalidJoinKeyError
 
 
 class OrgJoinView:
+    """Class of join organisation view
+    
+    Attributes:
+        _root: root of the window
+        _frame: frame of the window
+        _org_name: input field for organisation name
+        _org_key: input field for organisation join key
+        _org_service: organisation service
+    
+    """
+
     def __init__(self, master, control):
+        """Constructor that initalizes the window
+        
+        Args:
+            master: root of the window
+            control: control.py class instance
+        """
         self._root = master
         self._frame = None
         self.control = control
         self._org_service = OrgService()
         self._org_name = None
         self._org_key = None
-        self.error = None
         self._initialize()
 
-    def pack(self):
-        self._frame.pack()
-
     def destroy(self):
+        """Destroy the window"""
         self._frame.destroy()
 
-    def _handle_create(self):
+    def pack(self):
+        """Pack the window"""
+        self._frame.pack()
+
+    
+
+    def _handle_join(self):
         org_name = self._org_name.get()
         org_key = self._org_key.get()
-        if user_service.join_org(org_name, org_key):
+        try:
+            user_service.join_org(org_name, org_key)
             self.control.switch_frame("OrgView")
+        except InvalidJoinKeyError:
+            messagebox.showerror("Error", "Invalid join key")
 
     def _create_new_org(self):
 
@@ -42,15 +65,15 @@ class OrgJoinView:
         self._org_key.grid(row=4, column=0, columnspan=2,
                            padx=5, pady=5, ipadx=30)
 
-        # Create button
-        create_button = ttk.Button(
-            master=self._frame, text="Join", command=self._handle_create)
-        create_button.grid(row=5, column=0, columnspan=2,
+        # Join button
+        join_button = ttk.Button(
+            master=self._frame, text="Join", command=self._handle_join)
+        join_button.grid(row=5, column=0, columnspan=2,
                            padx=5, pady=5, ipadx=60)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        self._root.title("Create a new organisation")
+        self._root.title("Join to an organisation")
         self._root.geometry("600x400")
         self._create_new_org()
         self._frame.grid_columnconfigure(0, weight=1)

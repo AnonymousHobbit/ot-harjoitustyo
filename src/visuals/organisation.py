@@ -6,7 +6,23 @@ from visuals.single_task import SingleTaskView
 
 
 class OrgView:
+    """Class of organisation view
+        Attributes:
+            _root: root of the window
+            _frame: frame of the window 
+            _single_task: single task view in the ui
+            _task: input field for creating new task
+            task_list: list of tasks
+            org_service: organisation service
+            org_name: name of the organisation retrieved from user_service
+    """
     def __init__(self, master, control):
+        """Constructor that initalizes the window
+        
+        Args:
+            master: root of the window
+            control: control.py class instance
+        """
         self._root = master
         self._frame = None
         self.control = control
@@ -15,12 +31,17 @@ class OrgView:
         self.task_list = None
         self.org_service = OrgService()
         self.org_name = user_service.get_org_name()
+
+        #Initialize the view
         self._initialize()
 
+
     def destroy(self):
+        """Destroy the window"""
         self._root.destroy()
 
     def pack(self):
+        """Pack the window"""
         self._frame.pack(fill=constants.X)
 
     # Handle new task
@@ -31,8 +52,14 @@ class OrgView:
 
     def _leave_org(self):
         user_service.leave_org()
+        self._root.destroy()
 
     def remove_task(self, task_id):
+        """Removes the task from the database
+        
+        Args:
+            task_id: id of the task to be removed
+        """
         self.org_service.delete_task(task_id)
         self._get_task_list()
 

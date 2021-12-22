@@ -5,7 +5,23 @@ from visuals.single_task import SingleTaskView
 
 
 class TaskView:
+    """Class of private tasks view
+
+    Attributes:
+        _root: root of the window
+        _frame: frame of the window
+        _single_task: single task view in the ui
+        _task: input field for creating new task
+        task_list: list of tasks
+        user_id: id of the user
+    """
     def __init__(self, master, control):
+        """Constructor that initalizes the window
+        
+        Args:
+            master: root of the window
+            control: control.py class instance
+        """
         self._root = master
         self._frame = None
         self.control = control
@@ -16,9 +32,11 @@ class TaskView:
         self._initialize()
 
     def destroy(self):
+        """Destroy the window"""
         self._root.destroy()
 
     def pack(self):
+        """Pack the window"""
         self._frame.pack(fill=constants.X)
 
     # Handle new task
@@ -27,7 +45,12 @@ class TaskView:
         task_service.create_new(task, self.user_id)
         self._get_task_list()
 
-    def _remove_task(self, task_id):
+    def remove_task(self, task_id):
+        """Removes the task from the database
+        
+        Args:
+            task_id: id of the task to be removed
+        """
         task_service.delete(task_id)
         self._get_task_list()
 
