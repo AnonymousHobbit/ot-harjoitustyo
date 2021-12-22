@@ -5,7 +5,7 @@ from modules.user_service import user_service
 
 class OrgCreateView:
     """Class of create organisation view
-    
+
     Attributes:
         _root: root of the window
         _frame: frame of the window
@@ -14,6 +14,7 @@ class OrgCreateView:
         _org_service: organisation service
 
     """
+
     def __init__(self, master, control):
         """Constructor that initalizes the window
 

@@ -15,9 +15,10 @@ class TaskView:
         task_list: list of tasks
         user_id: id of the user
     """
+
     def __init__(self, master, control):
         """Constructor that initalizes the window
-        
+
         Args:
             master: root of the window
             control: control.py class instance
@@ -47,7 +48,7 @@ class TaskView:
 
     def remove_task(self, task_id):
         """Removes the task from the database
-        
+
         Args:
             task_id: id of the task to be removed
         """

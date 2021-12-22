@@ -5,17 +5,18 @@ from modules.user_service import user_service, IncorrectCredentialsError, Userna
 
 class StartView:
     """Class of login/register view
-    
+
         Attributes:
             _root: root window
             _frame: frame of login/register view
             username: username of user
             password: password of user
-            
+
     """
+
     def __init__(self, master, control):
         """Constructor that initializes the window
-        
+
         Args:
             master: root window
             control: control.py class instance
@@ -45,7 +46,8 @@ class StartView:
         except UsernameExistsError:
             messagebox.showerror("Error", "Username already exists")
         except ShortCredentialsError:
-            messagebox.showerror("Error", "Username or password must be at least 3 characters")
+            messagebox.showerror(
+                "Error", "Username or password must be at least 3 characters")
 
     # Handle login to already existing account
     def _handle_login(self):

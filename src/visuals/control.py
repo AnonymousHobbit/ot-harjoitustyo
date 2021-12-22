@@ -13,9 +13,10 @@ class UI:
         _root: root window
         _frame: frame of the window
         frames: dictionary of frames"""
+
     def __init__(self, master):
         """Constructor that creates the frames dictionary
-        
+
         Args:
             master: root window
         """
@@ -41,7 +42,7 @@ class UI:
     # Display new frame
     def switch_frame(self, frame):
         """Switch to a new frame
-        
+
         Args:
             frame: name of the frame to be switched to
         """

@@ -9,9 +9,10 @@ class SingleTaskView:
         parent: parent class instance
         _frame: frame of the window
     """
+
     def __init__(self, master, parent):
         """Constructor that initalizes the window
-        
+
         Args:
             master: root of the window
             parent: parent class instance
@@ -28,7 +29,6 @@ class SingleTaskView:
     def pack(self):
         """Pack the window"""
         self._frame.pack(fill=constants.X)
-
 
     def _task_frame(self, item):
         task_frame = ttk.Frame(master=self._frame)

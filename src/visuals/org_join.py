@@ -5,14 +5,14 @@ from modules.user_service import InvalidJoinKeyError, user_service, InvalidJoinK
 
 class OrgJoinView:
     """Class of join organisation view
-    
+
     Attributes:
         _root: root of the window
         _frame: frame of the window
         _org_name: input field for organisation name
         _org_key: input field for organisation join key
         _org_service: organisation service
-    
+
     """
 
     def __init__(self, master, control):
@@ -67,7 +67,7 @@ class OrgJoinView:
         join_button = ttk.Button(
             master=self._frame, text="Join", command=self._handle_join)
         join_button.grid(row=5, column=0, columnspan=2,
-                           padx=5, pady=5, ipadx=60)
+                         padx=5, pady=5, ipadx=60)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

@@ -16,9 +16,10 @@ class OrgView:
             org_service: organisation service
             org_name: name of the organisation retrieved from user_service
     """
+
     def __init__(self, master, control):
         """Constructor that initalizes the window
-        
+
         Args:
             master: root of the window
             control: control.py class instance
@@ -32,9 +33,8 @@ class OrgView:
         self.org_service = OrgService()
         self.org_name = user_service.get_org_name()
 
-        #Initialize the view
+        # Initialize the view
         self._initialize()
-
 
     def destroy(self):
         """Destroy the window"""
@@ -56,7 +56,7 @@ class OrgView:
 
     def remove_task(self, task_id):
         """Removes the task from the database
-        
+
         Args:
             task_id: id of the task to be removed
         """

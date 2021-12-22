@@ -4,15 +4,16 @@ from modules.user_service import user_service
 
 class DashboardView:
     """Class of Dashboard view
-    
+
     Attributes:
         _root: root window
         _frame: frame of dashboard view
 
     """
+
     def __init__(self, master, control):
         """Constructor that initializes the window
-        
+
         Args:
             master: root window
             control: control.py class instance
