@@ -17,7 +17,7 @@ class OrgJoinView:
 
     def __init__(self, master, control):
         """Constructor that initalizes the window
-        
+
         Args:
             master: root of the window
             control: control.py class instance
@@ -38,8 +38,6 @@ class OrgJoinView:
         """Pack the window"""
         self._frame.pack()
 
-    
-
     def _handle_join(self):
         org_name = self._org_name.get()
         org_key = self._org_key.get()
@@ -49,7 +47,7 @@ class OrgJoinView:
         except InvalidJoinKeyError:
             messagebox.showerror("Error", "Invalid join key")
 
-    def _create_new_org(self):
+    def _join_new_org(self):
 
         # Name section
         name_label = ttk.Label(master=self._frame, text="Organisation name")
@@ -75,5 +73,5 @@ class OrgJoinView:
         self._frame = ttk.Frame(master=self._root)
         self._root.title("Join to an organisation")
         self._root.geometry("600x400")
-        self._create_new_org()
+        self._join_new_org()
         self._frame.grid_columnconfigure(0, weight=1)

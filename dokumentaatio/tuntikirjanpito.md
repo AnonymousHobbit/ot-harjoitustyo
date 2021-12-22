@@ -10,4 +10,7 @@
 | 11.12. |  5  | Tehtävien luominen mahdollista |
 | 12.12. |  4  | Tehtävien poistaminen sekä UI:n luomista |
 | 13.12. |  4  | Arkkitehtuuri sekä organisaatioiden luominen |
-| Yht. | 27 | |
+| 17.12. |  2  | Organisaation tehtävät |
+| 20.12. |  3  | Koodin refaktorointa |
+| 22.12. |  4  | Dokumentointia sekä organisaation testaaminen | 
+| Yht. | 36 | |

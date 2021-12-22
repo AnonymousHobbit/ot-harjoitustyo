@@ -26,3 +26,17 @@ Kun käyttäjä on tehtävät-sivulla, ja syöttää tehtävän lomakkeesseen ja
 Käyttäjä menee organisaation luonti -sivulle ja siellä antaa nimen sekä salasanan. Napin painettuaan sovellus kutsuu OrgService-luokan `create_new`-funktiota, jonka parametreina on organisaation nimi, organisaation salasana ja userService-luokka. Funktio tarkistaa onko olemassa semmoista nimeä ja mikäli ei ole niin kutsuu UserServicen `join_org`-funktiota, jossa muokataan käyttäjän tietokantaa ja vaihdetaan siihen organisaation nimi.
 
 Tämän jälkeen käyttäjälle näytetään organisaation ikkuna. 
+
+### Organisaatioon liittyminen
+![Organisaatioon liittyminen](photos/org_liittyminen.png)
+Käyttäjä painaa "Join an organisation" nappia, ja antaa organisaation nimen sekä avaimen lomakkeeseen. Kun nappia painetaan, UI lähettää pyynnön UserService-luokan `join_org`-funktiota parametreinaan organisaation nimi sekä avain. 
+
+Tämän jälkeen OrgService-luokassa katsotaan onko avain oikea ja jos on niin käyttäjälle näytetään organisaation ikkuna. 
+
+### Tehtävien luominen organisaatiossa
+![Tehtävän luominen organisaatiossa](photos/organisaatio_tehtava.png)
+Organisaation ikkunassa käyttäjä syöttää lomakkeeseen tehtävän ja painaa nappia.
+Aluksi UI tekee pyynnön userService-luokalle, josta se tarkistaa käyttäjän organisaation. 
+
+Sitten tehdään pyyntö OrgService-luokan `create_task`-funktiota parametreilla tehtävä ja organsiaation nimi. 
+
