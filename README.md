@@ -3,9 +3,9 @@
 Tehtävien hallinnointisovellus. Sovelluksessa voi yksittäinen käyttäjä pitää kirjaa omista tehtävistään. Käyttäjä voi myös kuulua organisaatioon, jossa näkyvät kaikki yleiset tehtävät jokaiselle organisaation jäsenelle. 
 
 ## Releases
-[Viikko5](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko5)
-[Viikko6](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko6)
-[Lopullinen](https.//github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/lopullinen)
+* [Viikko5](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko5)
+* [Viikko6](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko6)
+* [Lopullinen](https.//github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/lopullinen)
 
 ## Dokumentaatio
 
