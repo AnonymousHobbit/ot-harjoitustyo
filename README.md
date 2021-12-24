@@ -5,7 +5,7 @@ Teht채vien hallinnointisovellus. Sovelluksessa voi yksitt채inen k채ytt채j채 pit�
 ## Releases
 * [Viikko5](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko5)
 * [Viikko6](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/viikko6)
-* [Lopullinen](https.//github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/lopullinen)
+* [Lopullinen](https://github.com/AnonymousHobbit/ot-harjoitustyo/releases/tag/lopullinen)
 
 ## Dokumentaatio
 
